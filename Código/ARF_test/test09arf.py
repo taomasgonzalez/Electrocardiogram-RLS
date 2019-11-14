@@ -34,7 +34,7 @@ output = np.zeros(len(señal))
 
 fig, (ax0, ax1) = plt.subplots(2, sharex=True)
 
-filt = pa.filters.FilterLMS(500, mu=0.5, w='zeros')
+filt = pa.FilterLMS(500, mu=0.5, w='zeros')
 
 x = np.zeros((len(señal), 500))
 

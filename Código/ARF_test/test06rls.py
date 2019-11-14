@@ -1,4 +1,4 @@
-import padasip as pa
+import modifiedPadaSipRLS as pa
 from get_data import all_signals
 import matplotlib.pyplot as plt
 from getPeaks import getPeaks
@@ -11,7 +11,6 @@ from scipy.linalg import toeplitz
 fs = 360
 timespan = 60
 time_cycle = 1.4
-
 
 original = all_signals["202"]["upper"][:fs * timespan]
 
@@ -34,18 +33,20 @@ output = np.zeros(len(señal))
 
 fig, (ax0, ax1) = plt.subplots(2, sharex=True)
 
-filt = pa.filters.FilterLMS(500, mu=0.5, w='zeros')
+N = 500
 
-x = np.zeros((len(señal), 500))
+filt = pa.FilterRLS(N, mu=0.9, w='zeros')
+
+x = np.zeros((len(señal), N))
 
 for i in range(len(señal)):
-    arr = np.zeros(500)
-    for j in range(500):
+    arr = np.zeros(N)
+    for j in range(N):
         if i - j >= 0:
             arr[j] = peaks[i - j]
     x[i] = arr
 
-y, e, w = filt.run(señal, x)
+y, e, w = filt.run(señal, x, impulses=peaks)
 
 
 ax0.plot(t, señal)
