@@ -80,6 +80,14 @@ A diagram of the ARF, taken from \cite{b1} is shown below:
 
 The ARF has two input signals: \par
 The original (ECG) signal and a signal which contains only impulses in the beginning of each pseudo period of the original signal. Via this method, the coefficients of the filter will be updated one by one in each iteration, so that if $w_k$ is the k-th coefficient of the filter, $w_k$ will be updated in one iteration of the algorithm and then  $w_{k+1}$ will be updated in the next iteration. This is because in each iteration, the filter will compare its impulse response at a single time (hence, at a single coefficient) with the input signal at that specific time, and the error derived from that comparison will be fed to the adaptive filter so as to minimize its cost function.
+\section{Cleansing of the dataset}
+
+Before any algorithm is proposed, there are certain aspects about the use of the dataset and its annotations that should be clarified:\par
+\begin{itemize}
+\item Annotations about the poor quality of the signals in a specific point in time (that sometimes made the signal unreadable at that point) were not considered as real anomalies. The detection of this points as anomalies would therefore signify an error in the algorithm when visualizing the efectiveness of the filter. This is not necessarily true, as the filter should perhaps consider excessive noise as an anomaly, but this criteria was taken so that the accuracy measurements that are presented when validating results represent the worst case scenario.
+\item Annotations that implied comments from the experts were not considered as anomalies either. This was chosen to be this way after inspection of a large amount of comments and their significance in the dataset.
+\item All other annotations were considered anomalies and were turned into an anomaly of type `A', so as not to discriminate between them.
+\end{itemize}
 
 \section{LMS prediction}
 
@@ -94,8 +102,8 @@ The first approach taken was the implementation of an adaptive predictor based o
 The implementation achieved its desired purpose of predicting the signal, as shown in the following figure:
 
 \begin{figure}[H]
-\centerline{\includegraphics[scale=0.7]{ARF_diagram.png}}
-\caption{Signal 202 of the MIT-BIH Arrhythmia Database, minute , and the predictor's response.}
+\centerline{\includegraphics[scale=0.35]{imagenes/prediction.png}}
+\caption{Fragment of Signal 100 of the MIT-BIH Arrhythmia Database and the predictor's response to it.}
 \label{fig}
 \end{figure}
 
@@ -134,8 +142,23 @@ As each peak of the QRS complex corresponds to the R component of the signal, a 
 
 \subsection{Design and implementation of the ARF}
 
+The implementation of the ARF was done with two different algorithms: The LMS and the RLS algorithm.
+Given the particular structure of the ARF that implies inputting an impulse signal and consequently updating only one coefficient on each iteration, it is expected that the use of RLS will not convey improvements of great significance to the filter, relative to using LMS. \par 
+Although the previously mentioned condition regarding the update of the coefficients of the ARF structure, both the implementation with LMS and the one with RLS were designed so that an update of multiple coefficients in the same iteration, in addition to the single coefficient update, was also made. \par
+The results of the single and multiple updates of the LMS and RLS algorithms were afterwards compared. These led to the conclusion that there was practically no difference in the resulting error between updating multiple coefficients in contrast with updating a single coefficient, but the computational cost, and hence the convergence velocity of the algorithm, was by far cheaper when using the LMS-single update method. As a consequence, the LMS-single update method is the one used when showing the results.\par
+We will now develop the particulars of all the implementations.
+
+\subsubsection{LMS implementation} 
 The ARF was implemented using the same LMS filter used in the adaptive predictor filter. No variants of the LMS algorithm were used, as its accuracy was more than acceptable. The convergence step $\mu$ of the LMS algorithm was chosen prioritizing the convergence velocity of the algorithm so that the filter could be used in almost real time like applications. With this objective in mind, $\mu$ was firstly given an initial value that made the algorithm unstable and then was decremented until the filter converged for all ECG signals in the database. \par
-The ARF filter was fed with the generated impulse signal and the original ECG signal. Although the output signal was available, it was only required to verify that the impulse response of the filter was indeed adapting to the original signal (In the particular case of the ARF, this step is equivalent to coefficient tracking). This was done both graphically and by observation of the error signal and the quadratic error of the filter.\par
+%PONER IMAGEN DE COMO SE DESARROLLA LA CONVERGENCIA DE LMS
+\subsubsection{RLS implementation}
+The convergence step $\mu$ of the LMS algorithm is reduced to very specific values, with $\mu \epsilon [0.9; 1]$. The best value for $\mu$ being of course the lowest $\mu = 0.9$ for greater convergence velocity. 
+%PONER IMAGEN DE COMO SE DESARROLLA LA CONVERGENCIA DE RLS
+
+\subsubsection{LMS and RLS comparison} 
+%PONER IMAGEN DE una versus la otra. Comparar.
+
+The final version of the ARF filter (LMS single-update) was fed with the generated impulse signal and the original ECG signal. Although the output signal was available, it was only required to verify that the impulse response of the filter was indeed adapting to the original signal (In the particular case of the ARF, this step is equivalent to coefficient tracking). This was done both graphically and by observation of the error signal and the quadratic error of the filter.\par
 
 \subsection{Baseline Wander and noise handling}
 
@@ -174,13 +197,7 @@ The designed algorithm calculates the energy of each pseudo-period of the error 
 An Accuracy test was developed  to measure how effective the detection method was and to make an outlier analysis that could lead us into solutions for particular failures or new algorithms.
 
 \section{Accuracy test}
-The comparison module from the following diagram measures the performance of the algorithm. Its inputs are both the detected anomalies and the real anomalies.\par
-
-\begin{figure}[H]
-\centerline{\includegraphics[scale=0.55]{imagenes/diagram2}}
-\caption{Basic diagram of our system - the comparison is focused}
-\label{fig}
-\end{figure}
+The comparison module from the diagram of Figure 5 measures the performance of the algorithm. Its inputs are both the detected anomalies and the real anomalies.\par
 
 Ideally, based on the measured performance, the other 4 blocks of the global system (highpassH, peakDetector, ARF, anommalyDetector) would be changed and improved continually in order to enhance its functionality.\par
 
@@ -212,13 +229,13 @@ We have run the accuracy test with all signals from the database.
 These two figures are the results. We made a graphic plot where each row has the results from one of each of the signals presented.
 
 \begin{figure}[H]
-\centerline{\includegraphics[scale=0.3]{imagenes/EfectividadDetectados}}
+\centerline{\includegraphics[scale=0.6]{imagenes/EfectividadDetectados}}
 \caption{Correctly detected/Detected}
 \label{fig}
 \end{figure}
 
 \begin{figure}[H]
-\centerline{\includegraphics[scale=0.3]{imagenes/EfectividadExistentes}}
+\centerline{\includegraphics[scale=0.6]{imagenes/EfectividadExistentes}}
 \caption{Failures detected/Total heart failures}
 \label{fig}
 \end{figure}
@@ -238,6 +255,6 @@ We developed a simple method using adaptive filters to detect some kinds of card
 \bibitem{b1} Nitish V. Thakor and Yi-Sheng Zhu, ``Applications of Adaptive Filtering to ECG Analysis :
 Noise Cancellation and Arrhythmia Detection'', IEEE Transactions On Biomedical Engineering. Vol. 18. No 8. August 1991.
 \bibitem{b2} J. A. Van Alste and T. S. Schilder``Removal of Base-Line Wander and Power-Line Interference from the ECG by an Efficient FIR Filter with a Reduced Number of Taps'', IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING, VOL. BME-32, NO. 12, DECEMBER 1985.
-\bibitem{b3} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1232857/
+\bibitem{b3} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1232857/ US National Library of Medicine.
 \end{thebibliography}
 \end{document}
