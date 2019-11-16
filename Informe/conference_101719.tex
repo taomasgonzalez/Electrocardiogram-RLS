@@ -34,9 +34,9 @@ anowik@itba.edu.ar}
 \maketitle
 
 \begin{abstract}
-An implementation of a heart anomaly detector for non-paced rhythms using different adaptive filter structures is proposed.\par
-The detection algorithm uses an Adaptive Recursive Filter (ARF), for which the impulse input is previously determined via a peak localization and time shift estimation algorithm. \par
-The detection of each anomaly by itself is product of the direct observation of the magnitude of the ARF output.
+An implementation of a heart anomaly detector using different adaptive filter structures is proposed.\par
+The detection algorithm uses an Adaptive Recursive Filter (ARF), for which the impulse input signal is previously determined via a peak localization and time shift estimation algorithm. \par
+The detection of each anomaly by itself is product of the direct observation of the magnitude of the ARF output.\par
 The design and testing of the detector was based on the MIT-BIH Arrhythmia Database with almost none false-negative and few false-positive results.
 \end{abstract}
 
@@ -145,11 +145,16 @@ Due to muscle movements and the noise frequencies of the electric line, the sign
 Numerous methods for reducing the baseline wander were tried, such as:
 \begin{itemize}
 \item Interference elimination of the line frequency using the common mode between the two available ECG signals as a reference and the analysed signal as input.
+\item Adaptive notch filter.
 \item Non adaptive notch and bandpass filters between 0.7 Hz and 125Hz as stated in \cite{b2}
 \item Lineal detrending of the signal.
 \end{itemize}
 
-In the end, the use a high-pass filter was the method that proved more successful to remove the baseline wander. 
+In the end, the use a high-pass filter of a 0.1Hz cut-off frequency was the method that proved more successful to remove the baseline wander.\par
+Using the common mode between the two available ECG signals as a reference and the analysed signal as input showed unsatisfactory results because the common mode of the two heart signals, although carried the line noise, it also contained important information about the patient's condition and his/her heart normal behaviour.\par
+No method for handling the powerline 60 Hz noise without severely affecting the transient response of the filter was found. This is due to the fact that the MIT-BIH Arrhythmia database did not provide 60 Hz noise that was in phase with the ECG signal, as if this extra data (that could only be taken at the moment of performing the ECG) was available, an adaptive interference cancellation scheme/filter might have been useful. \par
+The reason why adaptive and non adaptive notch filters do not achieve acceptable results were already stated by. Using the substraction procedure is proposed in this article. \par
+
 
 \section{Criteria for recognizing heart anomalies}
 Until now we have developed a system with several stages, first a filter to remove low frequencies trends, then a peak detector. The ARF used peak detector output and signal to build an error signal that would contain information easy to extract to detect anomalies.
@@ -222,5 +227,6 @@ We developed an simple method using adaptative filters to detect some kinds of c
 \bibitem{b1} Nitish V. Thakor and Yi-Sheng Zhu, ``Applications of Adaptive Filtering to ECG Analysis :
 Noise Cancellation and Arrhythmia Detection'', IEEE Transactions On Biomedical Engineering. Vol. 18. No 8. August 1991.
 \bibitem{b2} J. A. Van Alste and T. S. Schilder``Removal of Base-Line Wander and Power-Line Interference from the ECG by an Efficient FIR Filter with a Reduced Number of Taps'', IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING, VOL. BME-32, NO. 12, DECEMBER 1985.
+\bibitem{b3} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1232857/
 \end{thebibliography}
 \end{document}
