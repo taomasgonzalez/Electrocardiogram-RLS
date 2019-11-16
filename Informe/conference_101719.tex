@@ -13,20 +13,18 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Detection of heart anomalies by use of adaptive LMS filters in ECG signals*\\
-{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
-should not be used}
+\title{Detection of heart anomalies by use of adaptive LMS and RLS filters in ECG signals*\\
 }
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Tom\'as Agust\'in Gonz\'alez Orlando}
 \IEEEauthorblockA{\textit{Procesamiento Adaptativo de Se\~nales} \\
-\textit{Instituto Tecnológico de Buenos Aires}\\
+\textit{Instituto Tecnol\'ogico de Buenos Aires}\\
 Buenos Aires, Argentina\\
 togonzalez@itba.edu.ar}
 \and
 \IEEEauthorblockN{2\textsuperscript{nd} Ariel Santiago Nowik}
 \IEEEauthorblockA{\textit{Procesamiento Adaptativo de Se\~nales} \\
-\textit{Instituto Tecnológico de Buenos Aires}\\
+\textit{Instituto Tecnol\'ogico de Buenos Aires}\\
 Buenos Aires, Argentina\\
 anowik@itba.edu.ar}
 }
@@ -37,7 +35,7 @@ anowik@itba.edu.ar}
 An implementation of a heart anomaly detector using different adaptive filter structures is proposed.\par
 The detection algorithm uses an Adaptive Recursive Filter (ARF), for which the impulse input signal is previously determined via a peak localization and time shift estimation algorithm. \par
 The detection of each anomaly by itself is product of the direct observation of the magnitude of the ARF output.\par
-The design and testing of the detector was based on the MIT-BIH Arrhythmia Database with almost none false-negative and few false-positive results.
+The design and testing of the detector was based on the MIT-BIH Arrhythmia Database with an acceptable amount of false-negative and false-positive results. Heart anomalies are not classified by the proposed method, only detected.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -163,9 +161,9 @@ Until now we have developed a system with several stages: first a filter to remo
 \label{fig}
 \end{figure}
 
-To develop our algorithm we could make another peak detector, after the thorough inspection of the available ECG signals and some trials and errors, we arrived to the conclusion that the energy of the error signal between two peaks is more accurate to detect an anomaly in that specific region. This is because electrocardiogram failure is more of a distributed problem over the whole pseudo-period, rather than a localized event.\par
+To develop our algorithm we could make another peak detector, however, after the thorough inspection of the available ECG signals and some trials and errors, we arrived to the conclusion that the energy of the error signal between two peaks is a more accurate metric for anomaly detection in that specific region. This is because electrocardiogram failure is more of a distributed problem over the whole pseudo-period rather than a localized event.\par
 
-The designed algorithm calculates the energy of each pseudo-period of the error signal. If said energy is sufficiently high (higher than a calibrated value reached by trial and error) the algorithm reports an anomaly. A weighted average was used to assign an epicenter to the anomaly, thus being able to compare our algorithm with the real anomalies, taken from the annotations of the MIT-BIH database .
+The designed algorithm calculates the energy of each pseudo-period of the error signal. If said energy is sufficiently high (higher than a calibrated value reached by trial and error) the algorithm reports an anomaly. A weighted average was used to assign an epicenter to the anomaly, thus being able to compare these epicenters with the real times of each anomaly, taken from the annotations of the MIT-BIH database.
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.7]{imagenes/anomalyAlgo}}
@@ -176,26 +174,32 @@ The designed algorithm calculates the energy of each pseudo-period of the error 
 An Accuracy test was developed  to measure how effective the detection method was and to make an outlier analysis that could lead us into solutions for particular failures or new algorithms.
 
 \section{Accuracy test}
-The algorithm time detections should now be compared to the times the real heart anomalies were detected. This timing information was taken from the database annotations. \par
+The comparison module from the following diagram measures the performance of the algorithm. Its inputs are both the detected anomalies and the real anomalies.\par
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.55]{imagenes/diagram2}}
 \caption{Basic diagram of our system - the comparison is focused}
 \label{fig}
 \end{figure}
-The comparison module from the previous diagram measures the performance of the algorithm. Its inputs are the detected anomalies and the real anomalies points.\par
-Ideally, based on the measured performance, the other 4 blocks of the global system (highpassH, peakDetector, ARF, anommalyDetector) would be changed and improved continually in order to enhance the system.\par
 
-Two different kinds of accuracy tests were done:
-First, we calculated from all detected positive the amount that were calculated correctly, and then we calculated from all the real positives, how much were correctly detected. Note that two points of view are similar but complementary. 
-The algorithm consisted of an iteration over the detected failure points that checked if a real failure was near enough. By trial and error we found the range size to select how far the detected anomaly and the real anomaly should be to be considered the same.  
+Ideally, based on the measured performance, the other 4 blocks of the global system (highpassH, peakDetector, ARF, anommalyDetector) would be changed and improved continually in order to enhance its functionality.\par
+
+Two different kinds of accuracy tests were done. This tests were designed to measure and contrast the amount of false-positives and false-negatives, which are defined as follows:\par
+\begin{itemize}
+\item \underline{false-positive:} The algorithm wrongly detects an anomaly when no real anomaly is in the database annotations at that specific time of the signal.
+\item \underline{false-negative:} The algorithm does not detect an anomaly although a real anomaly exists in the database annotations at that specific time of the signal.
+\end{itemize}
+
+It should be noted that, although these two errors in the algorithm may seem very similar, a false-negative is considered of much more importance than a false-positive. The reason of such a distinction is due to the severe implications of having a patient diagnosed as healthy when he is really not as opposite to detecting a condition in a specific time, which could be easily and quickly corrected by an expert.\par
+
+The algorithm consisted of an iteration over the detected failure points that checked if a real failure was near enough. By trial and error we found the range size to select how far the detected anomaly and the real anomaly should be considered the same.  
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.8]{imagenes/comparisonAlgo.png}}
 \caption{Correctly detected/Detected}
 \label{fig}
 \end{figure}
 
-We computed an array to optimize the calculation, that contained 1s if the position was near enough to a real failure point (and 0s otherwise). With the array computed then we could check in $O(1)$ if a failure points was correcly selected. This algorithm would be efficient if the failure real points are much lower than the total points, because setting lots of 1s in the array can be time consuming leading to a slow algorithm. There could be better methods that might involve sorting the failure points arrays, but for our application this method was good enough. In the next picture we can visualize the array computed.
+We computed an array to optimize the calculation, that contained 1s if the position was near enough to a real failure point (and 0s otherwise). With this array, we could check in $O(1)$ if a failure point was correcly selected. This algorithm would be efficient if the failure real points are much lower than the total points, because setting lots of 1s in the array can be time consuming leading to a slow algorithm. There could be better methods that might involve sorting the failure points arrays, but for our application this method was good enough. In the next picture we can visualize computed array.
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.8]{imagenes/arrayExplain.png}}
@@ -204,7 +208,7 @@ We computed an array to optimize the calculation, that contained 1s if the posit
 \end{figure}
 
 
-We have run the accuracy test with all signals.
+We have run the accuracy test with all signals from the database.
 These two figures are the results. We made a graphic plot where each row has the results from one of each of the signals presented.
 
 \begin{figure}[H]
@@ -220,10 +224,15 @@ These two figures are the results. We made a graphic plot where each row has the
 \end{figure}
 
 \section{Analysis and validation of results}
-The results are very disperse. In some cases there are very low accuracy rate, there are two main reasons that were studied. The first is that there are signals that have a permanent signal anomaly. That means the adapted algorithm will learn that the anomaly is the correct pattern, thus the algorithm will fail almost always, it is built for causal failures, not permanent. To make an algorithm that deals with those cases a more advanced algorithm, that have information of how the cardiac signals failures are, and how the normal cardiac signals are. This would imply the necessity of a more complete database to train the algorithm. The second failure scenario studied is when there is a failure that has no relationship with the signal form but with a period mismatch of heart signal, this case could more easily handled, by adding a system before the ARF that checks if the peak distance is corrected. 
+
+The results are very disperse. In some cases there are very low accuracy rate. From the analysis of these cases, we discovered two main reasons for these inaccuracies: \par
+\begin{enumerate}
+\item Every case in which a signal has permanent anomalies, the adapted filter will learn that the anomaly is the correct pattern, thus the algorithm will almost certainly fail, as it is built for causal failures, not permanent ones. To make a more advanced algorithm that deals with these cases, the designed method should take into account information of how the cardiac signals are in both healthy and unhealthy hearts. This would imply the necessity of a more complete database to train the algorithm.
+\item In those cases in which there is a failure that has no relationship with the signal form but with a period mismatch of heart signals, the algorithm does not detect an anomaly as there is no input control of the impulse signal. This case could more easily handled, by adding a system before the ARF that checks if the peak distance is healthy. 
+\end{enumerate}
 
 \section{Conclusion}
-We developed a simple method using adaptative filters to detect some kinds of cardiac failures and find a way to verify it worked right in lot of cases using a database. We studied different improvements that could be done to the different stages of the method, and we found also limitations of the methodology used. It is very probable that the ideas we used are key for other more advance methods, that, are currently out of our scope of knowledge.
+We developed a simple method using adaptive filters to detect some kinds of cardiac failures and find a way to verify it worked right in lot of cases using the MIT-BIH database. We studied different improvements that could be done to the different stages of the method, and found the limitations of the used methodology. It is very probable that the ideas we used are key for other more advance methods, that are currently out of our scope of knowledge.
 
 \begin{thebibliography}{00}
 \bibitem{b1} Nitish V. Thakor and Yi-Sheng Zhu, ``Applications of Adaptive Filtering to ECG Analysis :
