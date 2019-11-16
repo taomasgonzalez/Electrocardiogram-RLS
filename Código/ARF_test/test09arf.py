@@ -1,4 +1,5 @@
-import padasip as pa
+import modifiedPadaSipLMS as pa
+from filterARF import filterARF
 from get_data import all_signals
 import matplotlib.pyplot as plt
 from getPeaks import getPeaks
@@ -34,21 +35,11 @@ output = np.zeros(len(señal))
 
 fig, (ax0, ax1) = plt.subplots(2, sharex=True)
 
-filt = pa.filters.FilterLMS(500, mu=0.5, w='zeros')
-
-x = np.zeros((len(señal), 500))
-
-for i in range(len(señal)):
-    arr = np.zeros(500)
-    for j in range(500):
-        if i - j >= 0:
-            arr[j] = peaks[i - j]
-    x[i] = arr
-
-y, e, w = filt.run(señal, x)
+myFilterARF = filterARF(500, 0.1)
+filtered, error = myFilterARF.train(peaks, señal)
 
 
 ax0.plot(t, señal)
-ax1.plot(t, y)
+ax1.plot(t, filtered)
 
 plt.show()
