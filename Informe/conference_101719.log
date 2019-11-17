@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.3.25)  11 NOV 2019 15:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.24)  16 NOV 2019 22:02
 entering extended mode
 **./conference_101719.tex
 (conference_101719.tex
@@ -112,7 +112,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtranrubishbin=\box28
 )
 ** ATTENTION: Overriding command lockouts (line 2).
-("C:\Program Files\MiKTeX 2.9\tex/latex/cite\cite.sty"
+(C:\Users\newtonis\AppData\Roaming\MiKTeX\2.9\tex/latex/cite\cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
@@ -185,10 +185,10 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-("C:\Program Files\MiKTeX 2.9\tex/latex/algorithms\algorithmic.sty"
+(C:\Users\newtonis\AppData\Roaming\MiKTeX\2.9\tex/latex/algorithms\algorithmic.
+sty
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
@@ -379,7 +379,7 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
+(C:\Users\newtonis\AppData\Roaming\MiKTeX\2.9\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
@@ -435,6 +435,12 @@ LaTeX Warning: Label `fig' multiply defined.
 
 LaTeX Warning: Label `fig' multiply defined.
 
+
+LaTeX Warning: Label `fig' multiply defined.
+
+
+LaTeX Warning: Label `fig' multiply defined.
+
 )
 \openout1 = `conference_101719.aux'.
 
@@ -458,7 +464,9 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 14.
 
 -- Lines per column: 56 (exact).
-("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+
+(C:\Users\newtonis\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mk
+ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
 \scratchdimen=\dimen137
@@ -518,93 +526,108 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 32.
+LaTeX Font Info:    Try loading font information for U+msa on input line 32.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 32.
 
 ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 34.
 <SinusRhythmLabels.png, id=1, 562.1pt x 554.07pt>
 File: SinusRhythmLabels.png Graphic file (type png)
 <use SinusRhythmLabels.png>
-Package pdftex.def Info: SinusRhythmLabels.png  used on input line 63.
+Package pdftex.def Info: SinusRhythmLabels.png  used on input line 61.
 (pdftex.def)             Requested size: 168.6313pt x 166.22227pt.
 
-Underfull \vbox (badness 1371) has occurred while \output is active []
+Underfull \vbox (badness 5637) has occurred while \output is active []
 
 <ARF_diagram.png, id=3, 333.91417pt x 175.32167pt>
 File: ARF_diagram.png Graphic file (type png)
 <use ARF_diagram.png>
-Package pdftex.def Info: ARF_diagram.png  used on input line 78.
+Package pdftex.def Info: ARF_diagram.png  used on input line 76.
 (pdftex.def)             Requested size: 233.73831pt x 122.72432pt.
 
-Underfull \vbox (badness 1881) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+ [1{C:/Users/newtonis/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
  <./SinusRhythmLabels.png>]
 <prediction.png, id=14, 629.35126pt x 304.80542pt>
 File: prediction.png Graphic file (type png)
 <use prediction.png>
-Package pdftex.def Info: prediction.png  used on input line 91.
+Package pdftex.def Info: prediction.png  used on input line 97.
 (pdftex.def)             Requested size: 251.73604pt x 121.92pt.
-File: ARF_diagram.png Graphic file (type png)
-<use ARF_diagram.png>
-Package pdftex.def Info: ARF_diagram.png  used on input line 99.
-(pdftex.def)             Requested size: 233.73831pt x 122.72432pt.
+<imagenes/prediction.png, id=15, 727.38417pt x 238.55792pt>
+File: imagenes/prediction.png Graphic file (type png)
+<use imagenes/prediction.png>
+Package pdftex.def Info: imagenes/prediction.png  used on input line 105.
+(pdftex.def)             Requested size: 254.58827pt x 83.4965pt.
+ [2 <./ARF_diagram.png> <./prediction.png> <./imagenes/prediction.png>]
+<imagenes/LMS_filter.png, id=25, 462.528pt x 346.896pt>
+File: imagenes/LMS_filter.png Graphic file (type png)
+<use imagenes/LMS_filter.png>
+Package pdftex.def Info: imagenes/LMS_filter.png  used on input line 154.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+<imagenes/RLS_filter.png, id=26, 462.528pt x 346.896pt>
+File: imagenes/RLS_filter.png Graphic file (type png)
+<use imagenes/RLS_filter.png>
+Package pdftex.def Info: imagenes/RLS_filter.png  used on input line 162.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2 <./ARF_diagram.png> <./prediction.png>]
-<imagenes/diagram.png, id=23, 438.75117pt x 229.67406pt>
+ [3 <./imagenes/LMS_filter.png>]
+<imagenes/filter_comparison.png, id=34, 462.528pt x 346.896pt>
+File: imagenes/filter_comparison.png Graphic file (type png)
+<use imagenes/filter_comparison.png>
+Package pdftex.def Info: imagenes/filter_comparison.png  used on input line 172
+.
+(pdftex.def)             Requested size: 277.51894pt x 208.13919pt.
+<imagenes/diagram.png, id=35, 438.75117pt x 229.67406pt>
 File: imagenes/diagram.png Graphic file (type png)
 <use imagenes/diagram.png>
-Package pdftex.def Info: imagenes/diagram.png  used on input line 158.
+Package pdftex.def Info: imagenes/diagram.png  used on input line 196.
 (pdftex.def)             Requested size: 241.31389pt x 126.3211pt.
-<imagenes/anomalyAlgo.png, id=24, 305.48529pt x 197.51392pt>
+ [4 <./imagenes/RLS_filter.png> <./imagenes/filter_comparison.png> <./imagenes/
+diagram.png>]
+<imagenes/anomalyAlgo.png, id=42, 305.48529pt x 197.51392pt>
 File: imagenes/anomalyAlgo.png Graphic file (type png)
 <use imagenes/anomalyAlgo.png>
-Package pdftex.def Info: imagenes/anomalyAlgo.png  used on input line 167.
+Package pdftex.def Info: imagenes/anomalyAlgo.png  used on input line 206.
 (pdftex.def)             Requested size: 213.83824pt x 138.25879pt.
- [3 <./imagenes/diagram.png> <./imagenes/anomalyAlgo.png>]
-<imagenes/diagram2.png, id=30, 438.75117pt x 229.67406pt>
-File: imagenes/diagram2.png Graphic file (type png)
-<use imagenes/diagram2.png>
-Package pdftex.def Info: imagenes/diagram2.png  used on input line 177.
-(pdftex.def)             Requested size: 241.31389pt x 126.3211pt.
-<imagenes/comparisonAlgo.png, id=31, 275.71005pt x 145.9854pt>
+<imagenes/comparisonAlgo.png, id=43, 275.71005pt x 145.9854pt>
 File: imagenes/comparisonAlgo.png Graphic file (type png)
 <use imagenes/comparisonAlgo.png>
-Package pdftex.def Info: imagenes/comparisonAlgo.png  used on input line 186.
+Package pdftex.def Info: imagenes/comparisonAlgo.png  used on input line 228.
 (pdftex.def)             Requested size: 220.56834pt x 116.78847pt.
-<imagenes/arrayExplain.png, id=32, 239.86414pt x 79.56927pt>
+<imagenes/arrayExplain.png, id=44, 239.86414pt x 79.56927pt>
 File: imagenes/arrayExplain.png Graphic file (type png)
 <use imagenes/arrayExplain.png>
-Package pdftex.def Info: imagenes/arrayExplain.png  used on input line 194.
+Package pdftex.def Info: imagenes/arrayExplain.png  used on input line 236.
 (pdftex.def)             Requested size: 191.89156pt x 63.65549pt.
-<imagenes/EfectividadDetectados.png, id=33, 433.62pt x 1084.05pt>
+<imagenes/EfectividadDetectados.png, id=45, 181.34416pt x 380.75583pt>
 File: imagenes/EfectividadDetectados.png Graphic file (type png)
 <use imagenes/EfectividadDetectados.png>
 Package pdftex.def Info: imagenes/EfectividadDetectados.png  used on input line
- 204.
-(pdftex.def)             Requested size: 130.087pt x 325.21751pt.
-<imagenes/EfectividadExistentes.png, id=34, 433.62pt x 1084.05pt>
-File: imagenes/EfectividadExistentes.png Graphic file (type png)
-<use imagenes/EfectividadExistentes.png>
-Package pdftex.def Info: imagenes/EfectividadExistentes.png  used on input line
- 210.
-(pdftex.def)             Requested size: 130.087pt x 325.21751pt.
+ 246.
+(pdftex.def)             Requested size: 108.80733pt x 228.45525pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4 <./imagenes/diagram2.png> <./imagenes/comparisonAlgo.png> <./imagenes/array
-Explain.png> <./imagenes/EfectividadDetectados.png>]
+ [5 <./imagenes/anomalyAlgo.png> <./imagenes/comparisonAlgo.png> <./imagenes/ar
+rayExplain.png>]
+<imagenes/EfectividadExistentes.png, id=52, 191.38167pt x 383.09792pt>
+File: imagenes/EfectividadExistentes.png Graphic file (type png)
+<use imagenes/EfectividadExistentes.png>
+Package pdftex.def Info: imagenes/EfectividadExistentes.png  used on input line
+ 252.
+(pdftex.def)             Requested size: 114.82988pt x 229.86052pt.
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -616,31 +639,34 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5 <./imagenes/EfectividadExistentes.png>] (conference_101719.aux)
+[6 <./imagenes/EfectividadDetectados.png> <./imagenes/EfectividadExistentes.png
+>] (conference_101719.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4519 strings out of 492946
- 65518 string characters out of 3135527
- 136932 words of memory out of 3000000
- 8338 multiletter control sequences out of 15000+200000
- 43811 words of font info for 98 fonts, out of 3000000 for 9000
+ 4532 strings out of 492945
+ 66209 string characters out of 3135504
+ 137935 words of memory out of 3000000
+ 8351 multiletter control sequences out of 15000+200000
+ 42226 words of font info for 96 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,35p,936b,288s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,35p,712b,302s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on conference_101719.pdf (5 pages, 1514384 bytes).
+pe1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on conference_101719.pdf (6 pages, 1534433 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

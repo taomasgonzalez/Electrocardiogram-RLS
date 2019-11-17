@@ -150,15 +150,29 @@ We will now develop the particulars of all the implementations.
 
 \subsubsection{LMS implementation} 
 The ARF was implemented using the same LMS filter used in the adaptive predictor filter. No variants of the LMS algorithm were used, as its accuracy was more than acceptable. The convergence step $\mu$ of the LMS algorithm was chosen prioritizing the convergence velocity of the algorithm so that the filter could be used in almost real time like applications. With this objective in mind, $\mu$ was firstly given an initial value that made the algorithm unstable and then was decremented until the filter converged for all ECG signals in the database. \par
-%PONER IMAGEN DE COMO SE DESARROLLA LA CONVERGENCIA DE LMS
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.6]{imagenes/LMS_filter.png}}
+\caption{Convergence of LMS Filer $\mu=0.5$}
+\label{fig}
+\end{figure}
+
 \subsubsection{RLS implementation}
 The convergence step $\mu$ of the LMS algorithm is reduced to very specific values, with $\mu \epsilon [0.9; 1]$. The best value for $\mu$ being of course the lowest $\mu = 0.9$ for greater convergence velocity. 
-%PONER IMAGEN DE COMO SE DESARROLLA LA CONVERGENCIA DE RLS
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.6]{imagenes/RLS_filter.png}}
+\caption{Convergence of RLS Filer $\mu=0.9$}
+\label{fig}
+\end{figure}
 
 \subsubsection{LMS and RLS comparison} 
-%PONER IMAGEN DE una versus la otra. Comparar.
 
 The final version of the ARF filter (LMS single-update) was fed with the generated impulse signal and the original ECG signal. Although the output signal was available, it was only required to verify that the impulse response of the filter was indeed adapting to the original signal (In the particular case of the ARF, this step is equivalent to coefficient tracking). This was done both graphically and by observation of the error signal and the quadratic error of the filter.\par
+
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.6]{imagenes/filter_comparison.png}}
+\caption{Signal (up), LMS filter (middle), RLS filter (down)}
+\label{fig}
+\end{figure}
 
 \subsection{Baseline Wander and noise handling}
 
