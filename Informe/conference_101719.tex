@@ -157,7 +157,8 @@ The ARF was implemented using the same LMS filter used in the adaptive predictor
 \end{figure}
 
 \subsubsection{RLS implementation}
-The convergence step $\mu$ of the LMS algorithm is reduced to very specific values, with $\mu \epsilon [0.9; 1]$. The best value for $\mu$ being of course the lowest $\mu = 0.9$ for greater convergence velocity. 
+The RLS algorithm made syntetized signal to predict correcly the desired signal.
+The convergence step $\mu$ of the RLS algorithm is reduced to very specific values, with $\mu \epsilon [0.9; 1]$. The best value for $\mu$ being of course the lowest $\mu = 0.9$ for greater convergence velocity. The initial values of the filter needed to be zero to ensure a faster convergence. 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.6]{imagenes/RLS_filter.png}}
 \caption{Convergence of RLS Filer $\mu=0.9$}
@@ -166,7 +167,7 @@ The convergence step $\mu$ of the LMS algorithm is reduced to very specific valu
 
 \subsubsection{LMS and RLS comparison} 
 
-The final version of the ARF filter (LMS single-update) was fed with the generated impulse signal and the original ECG signal. Although the output signal was available, it was only required to verify that the impulse response of the filter was indeed adapting to the original signal (In the particular case of the ARF, this step is equivalent to coefficient tracking). This was done both graphically and by observation of the error signal and the quadratic error of the filter.\par
+The final version of the ARF filter (LMS single-update) was fed with the generated impulse signal and the original ECG signal. Although the output signal was available, it was only required to verify that the impulse response of the filter was indeed adapting to the original signal (In the particular case of the ARF, this step is equivalent to coefficient tracking). This was done both graphically and by observation of the error signal and the quadratic error of the filter. The conclusion was that there was no determinant enhancement by changing LMS to RLS algorithm. Even more, RLS algorithm was much slower thus impractical. \par
 
 \begin{figure}[H]
 \centerline{\includegraphics[scale=0.6]{imagenes/filter_comparison.png}}
